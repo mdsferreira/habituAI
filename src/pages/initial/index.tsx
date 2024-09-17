@@ -16,7 +16,7 @@ export default function Initial() {
                     <View style={styles.logoContainer}>
                         <Image
                             style={styles.logo}
-                            source={require('../../assets/images/logo1.png')}
+                            source={require('../../assets/images/logo.png')}
                         />
                     </View>
                     <Text size="l" style={styles.title} >Enjoy your new journey</Text>
@@ -35,9 +35,9 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 10,
         alignItems: 'flex-start',
         height: Dimensions.get('window').height,
-        backgroundColor: '#1a31b0',
+        backgroundColor: '#28105e',
         padding: 20,
-        justifyContent: "space-between"
+        justifyContent: "space-around"
 
     },
     header: {
@@ -45,23 +45,23 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         width: "100%",
-        marginTop: 95
+        marginTop: 90
     },
     bottom: {
         width: "100%",
-        marginBottom: 50,
+        marginBottom: 100,
         justifyContent: "space-between",
         height: 120
     },
     logoContainer: {
-        backgroundColor: 'white',
+        backgroundColor: "#28105e",
         borderRadius: 15,
         justifyContent: "flex-start",
         alignItems: "flex-start",
         marginTop: 20
     },
     title: {
-        marginTop: 20,
+        marginTop: 40,
         textShadowColor: 'rgba(0, 0, 0, 0.75)',
         textShadowOffset: { width: -1, height: 1 },
         textShadowRadius: 10

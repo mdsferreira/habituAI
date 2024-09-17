@@ -20,7 +20,7 @@ export default function Button(props) {
 const styles = StyleSheet.create({
     button: {
         width: "90%",
-        borderRadius: 50,
+        borderRadius: 15,
         justifyContent: "center",
         alignItems: "center",
         height: 50,

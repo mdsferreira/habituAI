@@ -15,11 +15,9 @@ function App(): React.JSX.Element {
   return (
     <SafeAreaView >
       <StatusBar />
-      <ScrollView contentInsetAdjustmentBehavior="automatic">
-        <View>
-          <Initial />
-        </View>
-      </ScrollView>
+      <View>
+        <Initial />
+      </View>
     </SafeAreaView>
   );
 }
