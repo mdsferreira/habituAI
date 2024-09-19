@@ -1,31 +1,34 @@
 import { StyleSheet, ImageBackground, Dimensions, Image, View, SafeAreaView, StatusBar } from 'react-native'
 import React from 'react'
-import Text from '../../components/text'
-import Button from '../../components/button'
+import { Text } from '../../components/text'
+import { Button } from '../../components/button'
 
 export default function Initial() {
     return (
-        <SafeAreaView>
+        <SafeAreaView style={{ height: Dimensions.get('window').height }}>
             <StatusBar
                 animated={true}
                 backgroundColor='#1a31b0'
                 barStyle='dark-content'
             />
-            <ImageBackground source={require('../../assets/images/bg6.jpeg')} resizeMode="cover" style={styles.container}>
+            <ImageBackground source={require('../../assets/images/bg6.jpeg')} resizeMode="cover" style={styles.bg} >
+                <View style={styles.background} />
+            </ImageBackground>
+            <View style={styles.container}>
                 <View style={styles.header}>
-                    <View style={styles.logoContainer}>
-                        <Image
-                            style={styles.logo}
-                            source={require('../../assets/images/logo.png')}
-                        />
-                    </View>
-                    <Text size="l" style={styles.title} >Enjoy your new journey</Text>
+                    <Image
+                        style={styles.logo}
+                        source={require('../../assets/images/logo.png')}
+                    />
+                    <Text fontVariant="md" variant='title' >HabituAI</Text>
+                    <Text fontVariant="md" variant='title' >Enjoy your new journey</Text>
                 </View>
                 <View style={styles.bottom}>
-                    <Button color="primary">Login</Button>
-                    <Button color="secondary">SignUp</Button>
+                    <Button variant="primary" style={{ marginTop: 20 }}>Login</Button>
+                    <Button variant="secondary" style={{ marginTop: 20 }}>SignUp</Button>
                 </View>
-            </ImageBackground>
+            </View>
+
         </SafeAreaView>
     )
 }
@@ -33,41 +36,47 @@ export default function Initial() {
 const styles = StyleSheet.create({
     container: {
         borderTopRightRadius: 10,
-        alignItems: 'flex-start',
         height: Dimensions.get('window').height,
-        backgroundColor: '#28105e',
         padding: 20,
-        justifyContent: "space-around"
-
+        alignItems: "center",
+        flexDirection: "column",
+    },
+    bg: {
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: Dimensions.get('window').height
+    },
+    background: {
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: Dimensions.get('window').height,
+        opacity: 0.90,
+        backgroundColor: "#28105e"
     },
     header: {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
         width: "100%",
-        marginTop: 90
+        flex: 2
+
     },
     bottom: {
         width: "100%",
-        marginBottom: 100,
-        justifyContent: "space-between",
-        height: 120
+        flex: 1,
     },
-    logoContainer: {
-        backgroundColor: "#28105e",
-        borderRadius: 15,
-        justifyContent: "flex-start",
-        alignItems: "flex-start",
-        marginTop: 20
+    name: {
+        marginTop: 10,
     },
     title: {
-        marginTop: 40,
-        textShadowColor: 'rgba(0, 0, 0, 0.75)',
-        textShadowOffset: { width: -1, height: 1 },
-        textShadowRadius: 10
+
     },
     logo: {
-        width: 80,
-        height: 80,
+        width: 100,
+        height: 100,
     }
 })

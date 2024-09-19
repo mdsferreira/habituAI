@@ -1,15 +1,24 @@
-import { StyleSheet, Text, View, TouchableWithoutFeedback } from 'react-native'
-import React from 'react'
+import {
+    StyleSheet, View, TouchableWithoutFeedback, TouchableWithoutFeedbackProps
+} from 'react-native'
+import React, { FC } from 'react'
+import { useTheme } from '../../hooks/useTheme';
+import { VariantType, Theme } from '../../types/theme';
+import { Text } from '../text';
 
-export default function Button(props) {
-    const { color } = props;
-    const btnStyle = color === "secondary" ? styles.buttonSecondary : {};
-    const txtStyle = color === "secondary" ? styles.textSecondary : {};
+interface ButtonProps extends TouchableWithoutFeedbackProps {
+    variant?: VariantType
+}
+
+export const Button: FC<ButtonProps> = (props) => {
+    const { variant = "primary", style } = props;
+    const theme = useTheme();
+    const styles = makeStyles({ ...theme, variant });
 
     return (
         <TouchableWithoutFeedback {...props} >
-            <View style={{ ...styles.button, ...btnStyle }}>
-                <Text style={{ ...styles.text, ...txtStyle }}>
+            <View style={{ ...styles.button, ...style }}>
+                <Text fontVariant="sm" variant={variant}>
                     {props.children}
                 </Text>
             </View>
@@ -17,26 +26,19 @@ export default function Button(props) {
     )
 }
 
-const styles = StyleSheet.create({
-    button: {
-        width: "90%",
-        borderRadius: 15,
-        justifyContent: "center",
-        alignItems: "center",
-        height: 50,
-        backgroundColor: "#8a3af2",
-        alignSelf: "center",
-    },
-    buttonSecondary: {
-        backgroundColor: "white",
-    },
-    text: {
-        fontSize: 15,
-        fontWeight: "bold",
-        textAlign: "center",
-        color: "white"
-    },
-    textSecondary: {
-        color: "#8a3af2"
-    }
-})
+interface StylesProps extends Theme {
+    variant: VariantType
+}
+
+const makeStyles = ({ colors, variant }: StylesProps) =>
+    StyleSheet.create({
+        button: {
+            width: "90%",
+            borderRadius: 15,
+            justifyContent: "center",
+            alignItems: "center",
+            height: 50,
+            backgroundColor: variant === "secondary" ? colors[variant].light : colors[variant].main,
+            alignSelf: "center",
+        }
+    })

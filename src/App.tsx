@@ -1,24 +1,21 @@
 import React from 'react';
 import {
   SafeAreaView,
-  ScrollView,
   StatusBar,
-  View,
 } from 'react-native';
 import Initial from './pages/initial';
+import { ThemeProvider } from './context/ThemeContext';
 
 function App(): React.JSX.Element {
   const isDarkMode = true;
 
-
-
   return (
-    <SafeAreaView >
-      <StatusBar />
-      <View>
+    <ThemeProvider >
+      <SafeAreaView >
+        <StatusBar />
         <Initial />
-      </View>
-    </SafeAreaView>
+      </SafeAreaView>
+    </ThemeProvider>
   );
 }
 

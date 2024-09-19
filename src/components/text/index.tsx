@@ -1,43 +1,27 @@
-import { StyleSheet, Text as RNText, TextProps } from 'react-native'
-import React from 'react';
+import { Text as RNText, TextProps } from 'react-native'
+import React, { FC, } from 'react';
+import { useTheme } from '../../hooks/useTheme';
+import { Font, FontVariant, Size } from '../../types/theme';
 
-type Size = 's' | 'm' | 'l' | 'xl'
 
-interface TextProperties extends TextProps {
-    size: Size;
+interface TextProperties extends Font {
+    fontVariant: Size;
+    variant: FontVariant;
+    children: any;
 }
 
-const fontSizeMap = {
-    s: "fontS",
-    m: "fontM",
-    l: "fontL",
-    xl: "fontXL"
-}
+export const Text: FC<TextProperties> = (props) => {
+    const { fontVariant, variant, children, ...rest } = props;
+    const theme = useTheme();
 
-export default function Text(props: TextProperties) {
-    const { size } = props;
-    const font = props.size ? styles[fontSizeMap[size]] : {};
-    return (
-        <RNText {...props} style={{ ...styles.font, ...props.style, ...font }} >{props.children}</RNText>
-    )
-}
-
-const styles = StyleSheet.create({
-    font: {
-        color: "#ffffff",
-        fontFamily: 'DMSans-Regular',
-    },
-    fontS: {
-        fontSize: 12,
-    },
-    fontM: {
-        fontSize: 18,
-    },
-    fontL: {
-        fontSize: 24,
-    },
-    fontLX: {
-        fontSize: 32,
+    const customStyle = {
+        ...rest,
+        fontSize: theme.typography.size[fontVariant]
     }
 
-})
+    const font = theme.typography.text[variant];
+
+    return (
+        <RNText style={{ ...font, ...customStyle }} >{children}</RNText>
+    )
+}
