@@ -3,19 +3,17 @@ import {
   SafeAreaView,
   StatusBar,
 } from 'react-native';
-import Initial from './pages/initial';
+import { NavigationContainer } from '@react-navigation/native';
 import { ThemeProvider } from './context/ThemeContext';
+import Routes from './config/routes';
 
 function App(): React.JSX.Element {
-  const isDarkMode = true;
-
   return (
-    <ThemeProvider >
-      <SafeAreaView >
-        <StatusBar />
-        <Initial />
-      </SafeAreaView>
-    </ThemeProvider>
+    <NavigationContainer>
+      <ThemeProvider >
+        <Routes />
+      </ThemeProvider>
+    </NavigationContainer>
   );
 }
 

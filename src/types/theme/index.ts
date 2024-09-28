@@ -13,6 +13,7 @@ export interface Theme {
             primary: Font;
             secondary: Font;
             title: Font;
+            body: Font
         },
         size: {
             xs: number;
@@ -43,6 +44,7 @@ export type Size = 'xs' | 'sm' | 'md' | 'xl' | 'lg';
 export type FontVariant = 'primary'
     | 'secondary'
     | 'title'
+    | 'body'
 
 
 export type Mode = 'light' | 'dark';

@@ -33,7 +33,7 @@ interface StylesProps extends Theme {
 const makeStyles = ({ colors, variant }: StylesProps) =>
     StyleSheet.create({
         button: {
-            width: "90%",
+            width: "100%",
             borderRadius: 15,
             justifyContent: "center",
             alignItems: "center",

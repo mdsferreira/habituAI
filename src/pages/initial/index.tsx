@@ -2,8 +2,19 @@ import { StyleSheet, ImageBackground, Dimensions, Image, View, SafeAreaView, Sta
 import React from 'react'
 import { Text } from '../../components/text'
 import { Button } from '../../components/button'
+import { NavigationProp } from '@react-navigation/native';
+import { ROUTES } from '../../config/routes';
 
-export default function Initial() {
+export const Initial: React.FC<NavigationProp> = ({ navigation }) => {
+
+    const goToLogin = () => {
+        navigation.navigate(ROUTES.login);
+    };
+
+    const goToSignUp = () => {
+        navigation.navigate(ROUTES.signup);
+    };
+
     return (
         <SafeAreaView style={{ height: Dimensions.get('window').height }}>
             <StatusBar
@@ -11,7 +22,7 @@ export default function Initial() {
                 backgroundColor='#1a31b0'
                 barStyle='dark-content'
             />
-            <ImageBackground source={require('../../assets/images/bg6.jpeg')} resizeMode="cover" style={styles.bg} >
+            <ImageBackground source={require('../../assets/images/bg.jpeg')} resizeMode="cover" style={styles.bg} >
                 <View style={styles.background} />
             </ImageBackground>
             <View style={styles.container}>
@@ -24,8 +35,8 @@ export default function Initial() {
                     <Text fontVariant="md" variant='title' >Enjoy your new journey</Text>
                 </View>
                 <View style={styles.bottom}>
-                    <Button variant="primary" style={{ marginTop: 20 }}>Login</Button>
-                    <Button variant="secondary" style={{ marginTop: 20 }}>SignUp</Button>
+                    <Button variant="primary" style={{ marginTop: 20 }} onPress={goToLogin}>Login</Button>
+                    <Button variant="secondary" style={{ marginTop: 20 }} onPress={goToSignUp}>SignUp</Button>
                 </View>
             </View>
 

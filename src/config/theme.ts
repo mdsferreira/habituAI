@@ -9,7 +9,7 @@ export const theme: Theme = {
         },
         secondary: {
             main: "#90ee02",
-            light: "#defabb",
+            light: "#f0f0f0",
             dark: "#09af00",
         },
         background: "#f0f0f0",
@@ -35,13 +35,16 @@ export const theme: Theme = {
             },
             title: {
                 fontFamily: 'DMSans-Regular',
-                textAlign: "center",
                 color: "white",
-                marginTop: 40,
                 textShadowColor: 'rgba(0, 0, 0, 0.75)',
                 textShadowOffset: { width: -1, height: 1 },
                 textShadowRadius: 10
-            }
+            },
+            body: {
+                fontFamily: 'DMSans-Regular',
+                color: "black",
+                fontWeight: "400"
+            },
         },
         size: {
             xs: 12,
