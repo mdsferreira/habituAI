@@ -3,10 +3,13 @@ import React, { useState } from 'react'
 import { Button } from '../../components/button/index'
 import { Input } from '../../components/input'
 import { Text } from '../../components/text'
+import { useAuthentication } from '../../services/authentication'
 
 export const Login = () => {
-    const [username, setUsername] = useState('');
+    const [email, setUsername] = useState('');
     const [password, setPassWord] = useState('');
+
+    const auth = useAuthentication()
 
     return (
         <View style={styles.pageContener}>
@@ -26,14 +29,14 @@ export const Login = () => {
                 </View>
                 <View style={styles.formContainer}>
                     <View style={styles.fields}>
-                        <Input value={username} onChangeText={setUsername} placeholder={"Enter your username"} textContentType='emailAddress' />
+                        <Input value={email} onChangeText={setUsername} placeholder={"Enter your email"} textContentType='emailAddress' />
                         <Input value={password} onChangeText={setPassWord} placeholder={"Enter your password"} textContentType='password' />
                         <View >
                             <Text variant='body' fontVariant='xs'>Remember me</Text>
                         </View>
                     </View>
                     <View style={{ width: "100%" }}>
-                        <Button >Enter</Button>
+                        <Button onPress={() => auth.login(email, password)}>Enter</Button>
                         <Text variant='body' fontVariant='xs'>Forget your password ?</Text>
                     </View>
                 </View>
