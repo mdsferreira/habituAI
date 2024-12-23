@@ -32,7 +32,7 @@
 		<true/>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>UIAppFonts</key>
 	<array>
 		<string>DMSans-Black.ttf</string>
@@ -53,6 +53,10 @@
 		<string>DMSans-SemiBoldItalic.ttf</string>
 		<string>DMSans-Thin.ttf</string>
 		<string>DMSans-ThinItalic.ttf</string>
+		<string>EvilIcons.ttf</string>
+		<string>FontAwesome6_Brands.ttf</string>
+		<string>FontAwesome6_Regular.ttf</string>
+		<string>FontAwesome6_Solid.ttf</string>
 	</array>
 	<key>UILaunchScreen</key>
 	<dict>
