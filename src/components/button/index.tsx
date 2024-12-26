@@ -42,7 +42,7 @@ const makeStyles = ({ colors, variant }: StylesProps) =>
     StyleSheet.create({
         button: {
             width: "100%",
-            borderRadius: 15,
+            borderRadius: 10,
             justifyContent: "center",
             alignItems: "center",
             height: 50,

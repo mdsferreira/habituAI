@@ -1,10 +1,12 @@
-import { StyleSheet, TextInput, TextInputProps, View } from 'react-native';
+import { StyleSheet, TextInput, TextInputProps } from 'react-native';
 import React, { FC } from 'react';
 import { Theme, VariantType } from '../../types/theme';
 import { useTheme } from '../../hooks/useTheme';
 
 interface InputProps extends TextInputProps {
-    variant?: VariantType
+    variant?: VariantType,
+    borderColor?: string,
+    width: string
 }
 
 export const Input: FC<InputProps> = (props) => {
@@ -12,7 +14,11 @@ export const Input: FC<InputProps> = (props) => {
     const styles = makeStyles(theme);
 
     return (
-        <TextInput style={styles.input} {...props}>
+        <TextInput style={{ width: props.width || "100%", borderColor: props.borderColor || theme.colors.primary.main, ...styles.input }}
+            placeholderTextColor="black"
+            selectionHandleColor="black"
+            textAlign="left"
+            {...props}>
             {props.children}
         </TextInput>
     )
@@ -22,9 +28,7 @@ export const Input: FC<InputProps> = (props) => {
 const makeStyles = (theme: Theme) =>
     StyleSheet.create({
         input: {
-            width: "100%",
             borderTopEndRadius: 15,
-            borderColor: theme.colors.primary.main,
             borderBottomWidth: 1,
             justifyContent: "center",
             alignItems: "center",
