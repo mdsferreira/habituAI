@@ -16,7 +16,7 @@ export const Text: FC<TextProperties> = (props) => {
 
     const customStyle = {
         ...rest,
-        fontSize: theme.typography.size[fontVariant]
+        fontSize: theme?.typography?.size[fontVariant]
     }
 
     const font = theme.typography.text[variant];

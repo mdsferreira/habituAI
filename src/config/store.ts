@@ -1,12 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
-import userReducer from '../slices/userSlice';
+import userReducer, { IUserState } from '../slices/userSlice';
 
 const store = configureStore({
     reducer: {
         user: userReducer,
     },
 });
-
+export interface IState {
+    user: IUserState
+}
 // Tipos inferidos para Redux
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

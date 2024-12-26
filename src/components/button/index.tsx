@@ -1,7 +1,8 @@
 import {
-    StyleSheet, View, TouchableWithoutFeedback, TouchableWithoutFeedbackProps
+    StyleSheet, View, TouchableWithoutFeedback, TouchableWithoutFeedbackProps,
+    ActivityIndicator
 } from 'react-native'
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import { useTheme } from '../../hooks/useTheme';
 import { VariantType, Theme } from '../../types/theme';
 import { Text } from '../text';
@@ -14,12 +15,19 @@ export const Button: FC<ButtonProps> = (props) => {
     const { variant = "primary", style } = props;
     const theme = useTheme();
     const styles = makeStyles({ ...theme, variant });
+    const [isLoading, setLoading] = useState(false);
+
+    const onPress = async (params: any) => {
+        setLoading(true);
+        await props.onPress(params)
+        setLoading(false);
+    }
 
     return (
-        <TouchableWithoutFeedback {...props} >
+        <TouchableWithoutFeedback {...props} onPress={onPress}>
             <View style={{ ...styles.button, ...style }}>
                 <Text fontVariant="sm" variant={variant}>
-                    {props.children}
+                    {isLoading ? <ActivityIndicator color={variant === "primary" ? "#ffffff" : "#000000"} /> : props.children}
                 </Text>
             </View>
         </TouchableWithoutFeedback>

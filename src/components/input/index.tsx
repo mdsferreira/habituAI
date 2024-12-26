@@ -9,7 +9,6 @@ interface InputProps extends TextInputProps {
 
 export const Input: FC<InputProps> = (props) => {
     const theme = useTheme();
-
     const styles = makeStyles(theme);
 
     return (
@@ -30,7 +29,6 @@ const makeStyles = (theme: Theme) =>
             justifyContent: "center",
             alignItems: "center",
             height: 50,
-            //backgroundColor: theme.colors.primary.light,
             alignSelf: "center",
             padding: 15,
         }
