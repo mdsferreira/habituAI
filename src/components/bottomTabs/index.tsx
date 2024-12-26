@@ -3,12 +3,13 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from '@react-native-vector-icons/fontawesome6';
 import HomeScreen from '../../pages/home';
 import ProfileScreen from '../../pages/profile';
+import { theme } from '../../config/theme';
 
 const Tab = createBottomTabNavigator();
 
 
 const icons = {
-    Home: "calendar-check",
+    Habits: "calendar-check",
     Profile: "user"
 }
 
@@ -16,17 +17,25 @@ const MainTabs: React.FC = () => {
     return (
         <Tab.Navigator
             screenOptions={({ route }) => ({
-                tabBarIcon: ({ focused, color, size }) => {
-                    let iconName: string = "home";
-
-                    // Retorna o ícone correto
-                    return <Icon name={icons[route.name]} size={size} color={color} iconStyle={focused ? "solid" : "regular"} />;
+                tabBarIcon: ({ focused, size }) => {
+                    return <Icon name={icons[route.name]} size={size} color={focused ? theme.colors.primary.main : theme.colors.primary.light} iconStyle={focused ? "solid" : "regular"} />;
                 },
                 tabBarActiveTintColor: '#007BFF',
                 tabBarInactiveTintColor: 'gray',
+                headerStyle: {
+                    //backgroundColor: theme.colors.primary.main,
+                },
+                headerTitleAlign: 'left',
+                //headerTintColor: theme.colors.secondary.light,
+                headerTitleStyle: {
+                    fontWeight: '500',
+                    fontSize: 25
+                },
             })}
         >
-            <Tab.Screen name="Home" component={HomeScreen} />
+            <Tab.Screen name="Habits" component={HomeScreen}
+
+            />
             <Tab.Screen name="Profile" component={ProfileScreen} />
         </Tab.Navigator>
     );
