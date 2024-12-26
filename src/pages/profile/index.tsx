@@ -1,11 +1,26 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { Button } from '../../components/button';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../slices/userSlice';
+import { useAuthentication } from '../../services/authentication';
+import { AppDispatch } from '../../config/store';
 
 const ProfileScreen: React.FC = () => {
+    const dispatch = useDispatch<AppDispatch>();
+    const auth = useAuthentication();
+
+    const handleLogout = () => {
+        dispatch(logout());
+        auth.logout();
+    };
+
+
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Profile</Text>
             <Text style={styles.text}>This is your profile page.</Text>
+            <Button variant='secondary' onPress={handleLogout} >Logout</Button>
         </View>
     );
 };

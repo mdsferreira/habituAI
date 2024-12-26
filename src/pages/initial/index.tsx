@@ -5,14 +5,18 @@ import { Button } from '../../components/button'
 import { NavigationProp } from '@react-navigation/native';
 import { ROUTES } from '../../config/routes';
 
-export const Initial: React.FC<NavigationProp> = ({ navigation }) => {
+export interface InitialScreenProps {
+    navigation: NavigationProp<any, any>
+};
+
+export const Initial: React.FC<InitialScreenProps> = ({ navigation }) => {
 
     const goToLogin = () => {
         navigation.navigate(ROUTES.login);
     };
 
     const goToSignUp = () => {
-        navigation.navigate(ROUTES.signup);
+        navigation.navigate(ROUTES.register);
     };
 
     return (

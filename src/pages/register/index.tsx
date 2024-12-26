@@ -1,15 +1,18 @@
-import { StyleSheet, View, Image, Dimensions, ImageBackground } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import { StyleSheet, View, Image, ImageBackground, Dimensions } from 'react-native'
+import { Input } from '../../components/input';
 import { Button } from '../../components/button/index'
-import { Input } from '../../components/input'
 import { Text } from '../../components/text'
-import { useAuthentication } from '../../services/authentication'
+import { useAuthentication } from '../../services/authentication';
 
-export const Login = () => {
-    const [email, setUsername] = useState('');
-    const [password, setPassWord] = useState('');
+const RegisterScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
+    const [name, setName] = useState<string>('');
+    const [email, setEmail] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+    const [confirmPassword, setConfirmPassword] = useState<string>('');
 
-    const auth = useAuthentication()
+    const auth = useAuthentication(navigation)
+
 
     return (
         <View style={styles.pageContener}>
@@ -23,28 +26,50 @@ export const Login = () => {
                         source={require('../../assets/images/logo.png')}
                     />
                     <View style={styles.title}>
-                        <Text variant='title' fontVariant='lg'>Welcome Back!</Text>
+                        <Text variant='title' fontVariant='lg'>Create an Account</Text>
                         <Text variant='title' fontVariant='xs'>Continue your adventure.</Text>
                     </View>
                 </View>
                 <View style={styles.formContainer}>
-                    <View style={styles.fields}>
-                        <Input value={email} onChangeText={setUsername} placeholder={"Enter your email"} textContentType='emailAddress' />
-                        <Input value={password} onChangeText={setPassWord} placeholder={"Enter your password"} textContentType='password' secureTextEntry />
-                        <View >
-                            <Text variant='body' fontVariant='xs'>Remember me</Text>
-                        </View>
-                    </View>
-                    <View style={{ width: "100%" }}>
-                        <Button onPress={() => auth.login(email, password)}>Enter</Button>
-                        <Text variant='body' fontVariant='xs'>Forget your password ?</Text>
+
+                    <Input
+                        placeholder="Name"
+                        value={name}
+                        onChangeText={setName}
+                    />
+                    <Input
+                        placeholder="Email"
+                        value={email}
+                        onChangeText={setEmail}
+                        keyboardType="email-address"
+                    />
+                    <Input
+                        placeholder="Password"
+                        value={password}
+                        onChangeText={setPassword}
+                        secureTextEntry
+                        textContentType='password'
+                    />
+                    <Input
+                        placeholder="Confirm Password"
+                        value={confirmPassword}
+                        onChangeText={setConfirmPassword}
+                        secureTextEntry
+                        textContentType='password'
+                    />
+                    <View style={styles.bottom}>
+                        <Button onPress={() => auth.register(navigation, email, password, confirmPassword)} variant='primary'  >Register</Button>
+                        <Button
+                            onPress={() => navigation.navigate('Login')}
+                            variant='secondary'
+                        >Go to Login</Button>
                     </View>
                 </View>
+
             </View>
         </View>
-    )
-}
-
+    );
+};
 
 const styles = StyleSheet.create({
     pageContener: {
@@ -102,5 +127,10 @@ const styles = StyleSheet.create({
     logo: {
         width: 100,
         height: 100,
-    }
+    },
+    bottom: {
+        width: "100%",
+    },
 })
+
+export default RegisterScreen;
