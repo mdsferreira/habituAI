@@ -1,4 +1,4 @@
-import { StyleSheet, TextInput, TextInputProps } from 'react-native';
+import { DimensionValue, StyleSheet, TextInput, TextInputProps } from 'react-native';
 import React, { FC } from 'react';
 import { Theme, VariantType } from '../../types/theme';
 import { useTheme } from '../../hooks/useTheme';
@@ -6,7 +6,7 @@ import { useTheme } from '../../hooks/useTheme';
 interface InputProps extends TextInputProps {
     variant?: VariantType,
     borderColor?: string,
-    width: string
+    width?: DimensionValue | undefined
 }
 
 export const Input: FC<InputProps> = (props) => {

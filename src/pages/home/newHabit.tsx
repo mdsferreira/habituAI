@@ -37,7 +37,8 @@ const NewHabitModal: React.FC<NewHabitModalProps> = ({ modalVisible, setOpen }) 
     const setFrequency = (frequency: string) => setHabitForm({ ...habitForm, frequency })
 
     const saveHabit = () => {
-        createHabit(habitForm)
+        createHabit(habitForm);
+        setOpen(false);
     }
 
     return (
@@ -73,7 +74,7 @@ const NewHabitModal: React.FC<NewHabitModalProps> = ({ modalVisible, setOpen }) 
                             {Object.keys(HABIT_ICONS).map((type) => {
                                 const { label, icon } = HABIT_ICONS[type];
                                 return (
-                                    <TouchableOpacity onPress={() => setIcon(icon, label)}
+                                    <TouchableOpacity key={icon} onPress={() => setIcon(icon, label)}
                                         style={{ borderColor: color, backgroundColor: hicon === icon ? color : theme.colors.black, ...styles.typeSelect }}>
                                         <Icon name={icon} size={20} color={hicon === icon ? theme.colors.black : color} iconStyle="solid" marginRight={10} />
                                         <Text fontVariant='sm' variant='body' color={hicon === icon ? theme.colors.black : 'white'}>{label}</Text>
@@ -90,7 +91,7 @@ const NewHabitModal: React.FC<NewHabitModalProps> = ({ modalVisible, setOpen }) 
                         <Text fontVariant='sm' color='white' variant='body' marginLeft={10}>Frequency</Text>
                         <ScrollView horizontal style={styles.types}>
                             {['daily', 'weekly', 'monthly'].map((freq) => (
-                                <TouchableOpacity onPress={() => setFrequency(freq)}
+                                <TouchableOpacity key={freq} onPress={() => setFrequency(freq)}
                                     style={{ borderColor: color, backgroundColor: frequency === freq ? color : theme.colors.black, ...styles.typeSelect }}>
                                     <Icon name={frequencyIcons[freq]} size={20} color={frequency === freq ? theme.colors.black : color} iconStyle="solid" marginRight={10} />
                                     <Text fontVariant='sm' variant='body' color={frequency === freq ? theme.colors.black : 'white'}>{freq}</Text>
