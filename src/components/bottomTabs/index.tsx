@@ -7,7 +7,6 @@ import { theme } from '../../config/theme';
 
 const Tab = createBottomTabNavigator();
 
-
 const icons = {
     Habits: "calendar-check",
     Profile: "user"

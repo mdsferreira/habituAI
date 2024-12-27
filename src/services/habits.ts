@@ -13,7 +13,7 @@ export const fetchHabits = async () => {
 
 export const createHabit = async (habit: IHabit) => {
     try {
-        await api.post('/habits', habit);
+        await api.post('/habits', { ...habit, startDate: "2024-12-01" });
     } catch (error) {
         console.log('Error fetching habits:', error);
     }

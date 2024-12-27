@@ -12,7 +12,6 @@ export interface ColorSelectProps {
 };
 
 export default function ColorSelect({ setColor, setColorSelection }: ColorSelectProps) {
-
     const selectColor = (newColor: string) => {
         setColor(newColor)
         setColorSelection(false);
@@ -20,12 +19,10 @@ export default function ColorSelect({ setColor, setColorSelection }: ColorSelect
 
     return (
         <View style={styles.container}>
-            {COLORS.map((color) => <TouchableOpacity onPress={() => selectColor(color)} style={{
-                backgroundColor: color,
-                width: 100,
-                height: 100,
-                borderRadius: 50,
-            }} />)}
+            {COLORS.map((color) => <TouchableOpacity
+                onPress={() => selectColor(color)}
+                style={{ backgroundColor: color, ...styles.color }} />
+            )}
         </View>
     )
 }
@@ -40,7 +37,14 @@ const styles = StyleSheet.create({
         backgroundColor: theme.colors.black,
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
-        padding: 30
+        padding: 30,
     },
+    color: {
+        margin: 5,
+        width: 100,
+        height: 100,
+        borderRadius: 50,
+
+    }
 
 })
