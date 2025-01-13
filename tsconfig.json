@@ -2,6 +2,20 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "display": "React Native",
   "compilerOptions": {
+    "paths": {
+      "@*": [
+        "./src*"
+      ],
+      "@components": [
+        "./src/components*"
+      ],
+      "@pages": [
+        "./src/pages"
+      ],
+      "tailwind.config": [
+        "./tailwind.config.js"
+      ]
+    },
     "target": "esnext",
     "module": "es2015",
     "types": [
@@ -43,6 +57,7 @@
     "forceConsistentCasingInFileNames": false
   },
   "exclude": [
-    "**/Pods/**"
+    "**/Pods/**",
+    "node_modules"
   ]
 }

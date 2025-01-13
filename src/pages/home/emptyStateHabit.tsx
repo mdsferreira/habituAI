@@ -1,14 +1,12 @@
-import { View, StyleSheet, TouchableOpacity, Image } from 'react-native'
+import { View, StyleSheet, Image } from 'react-native'
 import React from 'react'
-import { Text } from '../../components/text';
-import { theme } from '../../config/theme';
-import { Button } from '../../components/button';
+import { Button } from '@/components'
 
 export interface EmptyHabistProps {
     onPres(): void
 };
 
-const EmptyHabist: React.FC<EmptyHabistProps> = ({ onPres }) => {
+const EmptyHabit: React.FC<EmptyHabistProps> = ({ onPres }) => {
     return (
         <View style={styles.container}>
             <Image
@@ -38,4 +36,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default EmptyHabist
+export default EmptyHabit

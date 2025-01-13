@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Image, ImageBackground, Dimensions } from 'react-native'
-import { Input } from '../../components/input';
-import { Button } from '../../components/button/index'
-import { Text } from '../../components/text'
-import { useAuthentication } from '../../services/authentication';
+import { Button, Input, Text } from '@/components';
+import { useAuthentication } from '@/services/authentication';
 
 const RegisterScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
     const [name, setName] = useState<string>('');
@@ -12,7 +10,6 @@ const RegisterScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
     const [confirmPassword, setConfirmPassword] = useState<string>('');
 
     const auth = useAuthentication(navigation)
-
 
     return (
         <View style={styles.pageContener}>
@@ -31,7 +28,6 @@ const RegisterScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
                     </View>
                 </View>
                 <View style={styles.formContainer}>
-
                     <Input
                         placeholder="Name"
                         value={name}

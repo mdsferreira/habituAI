@@ -1,14 +1,11 @@
 import { Modal, ScrollView, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
 import Icon from '@react-native-vector-icons/fontawesome6'
-import { theme } from '../../config/theme'
-import { Text } from '../../components/text'
-import ColorSelect from '../../components/colorSelect'
-import { Input } from '../../components/input'
-import { HABIT_ICONS } from '../../config/constants'
-import { Button } from '../../components/button'
-import { IHabit } from '../../types/theme/habit'
-import { createHabit } from '../../services/habits'
+import { HABIT_ICONS } from '@/config/constants'
+import { IHabit } from '@/types/habit'
+import { theme } from '@/config/theme'
+import { Button, ColorSelect, Input, Text } from '@/components'
+import { createHabit } from '@/services/habits'
 
 export interface NewHabitModalProps {
     modalVisible: boolean,

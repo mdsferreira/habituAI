@@ -5,12 +5,12 @@ import { Font, FontVariant, Size } from '../../types/theme';
 
 
 interface TextProperties extends Font {
-    fontVariant: Size;
-    variant: FontVariant;
+    fontVariant?: Size;
+    variant?: FontVariant;
     children: any;
 }
 
-export const Text: FC<TextProperties> = (props) => {
+const Text: FC<TextProperties> = (props) => {
     const { fontVariant, variant, children, ...rest } = props;
     const theme = useTheme();
 
@@ -25,3 +25,5 @@ export const Text: FC<TextProperties> = (props) => {
         <RNText style={{ ...font, ...customStyle }} >{children}</RNText>
     )
 }
+
+export default Text;

@@ -1,11 +1,9 @@
 import { StyleSheet, View, Image, Dimensions, ImageBackground } from 'react-native'
 import React, { useState } from 'react'
-import { Button } from '../../components/button/index'
-import { Input } from '../../components/input'
-import { Text } from '../../components/text'
 import { useAuthentication } from '../../services/authentication'
+import { Button, Input, Text } from '@/components';
 
-export const Login = () => {
+const LoginScreen = () => {
     const [email, setUsername] = useState('');
     const [password, setPassWord] = useState('');
 
@@ -44,7 +42,6 @@ export const Login = () => {
         </View>
     )
 }
-
 
 const styles = StyleSheet.create({
     pageContener: {
@@ -104,3 +101,5 @@ const styles = StyleSheet.create({
         height: 100,
     }
 })
+
+export default LoginScreen

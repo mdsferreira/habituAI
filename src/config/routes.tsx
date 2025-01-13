@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Initial } from '../pages/initial';
-import { Login } from '../pages/login';
-import MainTabs from '../components/bottomTabs';
-import * as AuthenticationUtils from '../utils/authentication';
-import RegisterScreen from '../pages/register';
-import { getToken, setToken } from '../slices/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import * as AuthenticationUtils from '@/utils/authentication';
+import { LoginScreen, InitialScreen, RegisterScreen } from '@/pages';
+import { MainTabs } from '@/components';
+import { getToken, setToken } from '@/slices/userSlice';
 import { AppDispatch, IState } from './store';
 
 export const ROUTES = {
@@ -16,8 +14,6 @@ export const ROUTES = {
   signup: 'SignUp',
   home: 'Home'
 };
-
-
 
 const Stack = createNativeStackNavigator();
 const StackAuthenticated = createNativeStackNavigator();
@@ -30,14 +26,14 @@ const AppStack = () => (
   <Stack.Navigator initialRouteName={ROUTES.initial}>
     <StackAuthenticated.Screen
       name={ROUTES.initial}
-      component={Initial}
+      component={InitialScreen}
       options={{
         headerShown: false,
       }}
     />
     <Stack.Screen
       name={ROUTES.login}
-      component={Login}
+      component={LoginScreen}
       options={{
         headerShown: false,
       }}
@@ -49,7 +45,6 @@ const AppStack = () => (
         headerShown: false,
       }}
     />
-
   </Stack.Navigator>
 );
 

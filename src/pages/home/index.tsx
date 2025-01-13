@@ -2,24 +2,20 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, StyleSheet, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { NavigationProp } from '@react-navigation/native';
 import Icon from '@react-native-vector-icons/fontawesome6';
-import { theme } from '../../config/theme';
-import { fetchHabits } from '../../services/habits';
-import EmptyHabist from './emptyStateHabit';
+import { theme } from '@/config/theme';
+import { fetchHabits } from '@/services/habits';
+import { Background } from '@/components/background';
+import EmptyHabit from './emptyStateHabit';
 import NewHabitModal from './newHabit';
-import { SafeAreaView } from 'react-native-safe-area-context'
-
-interface Habit {
-    id: number;
-    title: string;
-    description: string;
-}
+import { IHabit } from '@/types/habit';
+import { HabitItem } from '@/components';
 
 export interface HomeScreenProps {
     navigation: NavigationProp<any, any>
 };
 
 const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
-    const [habits, setHabits] = useState<Habit[]>([]);
+    const [habits, setHabits] = useState<IHabit[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [openModal, setOpen] = useState<boolean>(false);
 
@@ -50,23 +46,22 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
     }
 
     return (
-        <SafeAreaView style={styles.container}>
-            {habits?.length ?
-                <FlatList
-                    data={habits}
-                    keyExtractor={(item) => item.id.toString()}
-                    renderItem={({ item }) => (
-                        <View style={styles.habitCard}>
-                            <Text style={styles.habitTitle}>{item.title}</Text>
-                            <Text style={styles.habitDescription}>{item.description}</Text>
-                        </View>
-                    )}
-                    contentContainerStyle={{ paddingBottom: 20 }}
-                /> :
-                <EmptyHabist onPres={() => setOpen(true)} />
-            }
-            <NewHabitModal modalVisible={openModal} setOpen={setOpen} />
-        </SafeAreaView>
+        <Background>
+            <>
+                {habits?.length ?
+                    <FlatList
+                        data={habits}
+                        keyExtractor={(item) => item.id.toString()}
+                        renderItem={({ item }) => (
+                            <HabitItem item={item} />
+                        )}
+                        contentContainerStyle={{ paddingBottom: 20 }}
+                    /> :
+                    <EmptyHabit onPres={() => setOpen(true)} />
+                }
+                <NewHabitModal modalVisible={openModal} setOpen={setOpen} />
+            </>
+        </Background>
     );
 };
 
@@ -82,26 +77,7 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         textAlign: 'center',
     },
-    habitCard: {
-        backgroundColor: '#FFF',
-        padding: 15,
-        marginBottom: 15,
-        borderRadius: 10,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 5,
-        elevation: 2,
-    },
-    habitTitle: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        marginBottom: 5,
-    },
-    habitDescription: {
-        fontSize: 14,
-        color: '#555',
-    },
+
     center: {
         flex: 1,
         justifyContent: 'center',
@@ -112,7 +88,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: theme.colors.primary.main,
         padding: 13,
-        borderRadius: 20,
+        borderRadius: 2,
         marginLeft: 20,
         marginRight: 20,
     }
