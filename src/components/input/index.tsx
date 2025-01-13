@@ -9,7 +9,7 @@ interface InputProps extends TextInputProps {
     width?: DimensionValue | undefined
 }
 
-export const Input: FC<InputProps> = (props) => {
+const Input: FC<InputProps> = (props) => {
     const theme = useTheme();
     const styles = makeStyles(theme);
 
@@ -24,7 +24,6 @@ export const Input: FC<InputProps> = (props) => {
     )
 }
 
-
 const makeStyles = (theme: Theme) =>
     StyleSheet.create({
         input: {
@@ -37,3 +36,5 @@ const makeStyles = (theme: Theme) =>
             padding: 15,
         }
     })
+
+export default Input;

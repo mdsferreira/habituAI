@@ -1,4 +1,4 @@
-import { IHabit } from "../types/theme/habit";
+import { IHabit } from "../types/habit";
 import api from "./api";
 
 export const fetchHabits = async () => {

@@ -1,16 +1,13 @@
+import React, { FC } from 'react'
 import { StyleSheet, ImageBackground, Dimensions, Image, View, SafeAreaView, StatusBar } from 'react-native'
-import React from 'react'
-import { Text } from '../../components/text'
-import { Button } from '../../components/button'
 import { NavigationProp } from '@react-navigation/native';
-import { ROUTES } from '../../config/routes';
+import { Button, Text } from '@/components';
+import { ROUTES } from '@/config/routes';
 
 export interface InitialScreenProps {
     navigation: NavigationProp<any, any>
 };
-
-export const Initial: React.FC<InitialScreenProps> = ({ navigation }) => {
-
+const InitialScreen: FC<InitialScreenProps> = ({ navigation }) => {
     const goToLogin = () => {
         navigation.navigate(ROUTES.login);
     };
@@ -39,14 +36,16 @@ export const Initial: React.FC<InitialScreenProps> = ({ navigation }) => {
                     <Text fontVariant="md" variant='title' >Enjoy your new journey</Text>
                 </View>
                 <View style={styles.bottom}>
-                    <Button variant="primary" style={{ marginTop: 20 }} onPress={goToLogin}>Login</Button>
-                    <Button variant="secondary" style={{ marginTop: 20 }} onPress={goToSignUp}>SignUp</Button>
+                    <Button variant="solid" action="primary" style={{ marginTop: 20 }} onPress={goToLogin}>Login</Button>
+                    <Button variant="solid" action="secondary" style={{ marginTop: 20 }} onPress={goToSignUp}>SignUp</Button>
                 </View>
             </View>
 
         </SafeAreaView>
     )
 }
+
+export default InitialScreen;
 
 const styles = StyleSheet.create({
     container: {

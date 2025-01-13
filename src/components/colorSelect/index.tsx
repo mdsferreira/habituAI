@@ -1,10 +1,12 @@
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, TouchableOpacity, StyleSheet } from 'react-native'
 import React from 'react'
-import { theme } from '../../config/theme'
+import { theme } from '@/config/theme'
+import { Box } from '../ui'
+import classNames from 'classnames';
 
 
-const COLORS = ["#E0CBF6", "#B486EA", "#9452E0", "#611FAD", "#3A1268", "#1D0934",
-    "#94CF26", "#CFD20F", "#64C1E3", "#E05252", "#EF822E", "#FC60A8"]
+const COLORS = ["bg-blue-500", "bg-cyan-300", "bg-indigo-500", "bg-amber-400", "bg-yellow-300", "bg-orange-400",
+    "bg-green-400", "bg-lime-500", "bg-lime-300", "bg-red-500", "bg-fuchsia-400", "bg-pink-400"]
 
 export interface ColorSelectProps {
     setColor(color: string): void,
@@ -21,7 +23,10 @@ export default function ColorSelect({ setColor, setColorSelection }: ColorSelect
         <View style={styles.container}>
             {COLORS.map((color) => <TouchableOpacity
                 onPress={() => selectColor(color)}
-                style={{ backgroundColor: color, ...styles.color }} />
+                key={color}
+            >
+                <Box className={classNames('m-2 w-24 h-24 rounded-full', { [color]: true })} />
+            </TouchableOpacity>
             )}
         </View>
     )
@@ -39,12 +44,4 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 20,
         padding: 30,
     },
-    color: {
-        margin: 5,
-        width: 100,
-        height: 100,
-        borderRadius: 50,
-
-    }
-
 })

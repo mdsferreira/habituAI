@@ -1,7 +1,6 @@
+import useToater from '@/hooks/useToater';
 import React, { Component, ReactNode } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Text } from '../text';
-import { Button } from '../button';
 
 interface Props {
     children: ReactNode;
@@ -10,6 +9,12 @@ interface Props {
 interface State {
     hasError: boolean;
     error: Error | null;
+}
+
+const ErrorToast = () => {
+    useToater("error")
+
+    return null
 }
 
 class ErrorBoundary extends Component<Props, State> {
@@ -35,13 +40,7 @@ class ErrorBoundary extends Component<Props, State> {
 
     render() {
         if (this.state.hasError) {
-            return (
-                <View style={styles.container}>
-                    <Text variant='title' fontVariant='md'>Something went wrong.</Text>
-                    <Text variant='body' fontVariant='md'>{this.state.error?.message}</Text>
-                    <Button variant="secondary" onPress={this.handleRetry}  >Try Again</Button>
-                </View>
-            );
+            return (<ErrorToast />);
         }
 
         return this.props.children;

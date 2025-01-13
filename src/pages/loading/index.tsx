@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Image, StyleSheet, Dimensions } from 'react-native';
 
-export const LogoScreen = () => {
+const LoadingScreen = () => {
     return (
         <View
             style={styles.container}>
@@ -14,6 +14,8 @@ export const LogoScreen = () => {
         </View>
     );
 };
+
+export default LoadingScreen;
 
 const styles = StyleSheet.create({
     container: {
